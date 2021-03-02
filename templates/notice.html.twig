@@ -1,0 +1,18 @@
+{% if app.request.locale == 'nl_NL' %}
+    <p>Welkom bij de Remote Vetting proof-of-concept voor SURFsecureID!</p>
+    <p>In deze PoC vragen we je om een tweede authenticatie factor te registreren en om daarna met een ander
+        authenticatiemiddel te bewijzen wie je bent – dat laaste is de "remote vetting" stap. Deze gegevens vergelijken
+        we met de gegevens die we van je instelling hebben ontvangen.</p>
+    <p>Het doel van deze PoC is om van jouw ervaring bij het grebruik van deze PoC te leren. Daarom vragen we je aan het
+    einde naar je ervaringen.</p>
+    <p>De geregistreerde tokens zijn alleen voor deze PoC, je kunt ze verder nergens voor gebruiken.
+    Via de help link oneraan het scherm krijg je meer informatie over deze PoC</p>
+{% else %}
+    <p>Welkom at the Remote Vetting proof-of-concept for SURFsecureID!</p>
+    <p>In this PoC you are tasked to register an authentication token and then to proof your identity using another
+    means of authentication – this last part is the "remote vetting" part. We then compare this identity information with
+    the identity information that we received from your institution. </p>
+    <p>The goal of the PoC is to learn from your experiences. At the end of the PoC we will ask your about your experiences.</p>
+    <p>Tokens you registered are for this PoC only, they are useless otherwise. You can use the help link at the bottom
+        of the screen for more information about this PoC</p>
+{% endif %}

@@ -22,6 +22,8 @@ use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 
 class SamlToken extends AbstractToken
 {
+    const ATTRIBUTE_SET = 'attribute_set';
+
     /**
      * @var \SAML2\Assertion
      */

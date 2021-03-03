@@ -32,11 +32,16 @@ before_script:
   - curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
   - composer install --prefer-dist
+  - composer frontend-install
 
 script:
   - composer test
+
+after_failure:
+  -  sudo tail -500 /var/log/syslog
 
 branches:
   only:
     - master
     - develop
+    - remote-vetting

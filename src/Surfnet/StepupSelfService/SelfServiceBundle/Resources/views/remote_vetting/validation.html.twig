@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}{{ 'ss.second_factor.remote_vet_validation.title'|trans }}{% endblock %}
+
+{% form_theme form _self %}
+
+{#Add basic layout for this form#}
+{%- block form_row -%}
+    <div class="form-group">
+        <div class="col-sm-4">
+            {{- form_label(form) -}}
+        </div>
+        <div class="col-sm-6">
+            {{- form_help(form) -}}
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+        </div>
+    </div>
+{%- endblock form_row -%}
+
+{#Add layout for choice widget (radio/checkbox collections)#}
+ {% block choice_widget %}
+     {% for child in form.children %}
+         {{- form_widget(child) -}}
+         {{- form_label(child, null) -}}
+     {% endfor %}
+ {% endblock choice_widget %}
+
+{% block content %}
+
+    <h2>{{ block('page_title') }}</h2>
+
+    {% set organization = identity.institution | trans_rv_schachome(app.request.locale) %}
+
+    <p>{{ 'ss.second_factor.remote_vet.text.does_it_match'|trans({
+            '%organization%': organization,
+            '%provider%': provider.name,
+        }) | nl2br }}</p>
+
+    {{ form_start(form, {'attr':{'class': 'form-horizontal rv-form'}}) }}
+    {{ form_errors(form) }}
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>{{ 'ss.second_factor.remote_vet.personal_data'|trans }}</h3>
+
+            <table class="table table-bordered table-hover table-responsive table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'ss.second_factor.remote_vet.attribute_name'|trans }}</th>
+                    <th>{{ organization }}</th>
+                    <th>{{ provider.name }}</th>
+                    <th>{{ 'ss.second_factor.remote_vet.is_attribute_valid'|trans }}</th>
+                    <th>{{ 'ss.second_factor.remote_vet.remarks'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{ form_widget(form.matches) }}
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="col-xs-12">
+            <h3>{{ 'ss.second_factor.remote_vet.feedback'|trans }}</h3>
+
+            {{ form_widget(form.feedback) }}
+
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+
+    <script>
+        (function () {
+            console.log("ready");
+        }());
+
+    </script>
+
+{% endblock %}

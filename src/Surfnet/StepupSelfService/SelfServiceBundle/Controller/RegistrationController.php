@@ -24,6 +24,7 @@ use Mpdf\Output\Destination as MpdfDestination;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Surfnet\StepupSelfService\SelfServiceBundle\Service\RaLocationService;
 use Surfnet\StepupSelfService\SelfServiceBundle\Service\RaService;
+use Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\RemoteVettingViewHelper;
 use Surfnet\StepupSelfService\SelfServiceBundle\Service\SecondFactorService;
 use Surfnet\StepupSelfService\SelfServiceBundle\Value\AvailableTokenCollection;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,6 +89,19 @@ class RegistrationController extends Controller
 
     /**
      * @Template
+     * @param string $secondFactorId
+     */
+    public function displayVettingTypesAction($secondFactorId)
+    {
+        return [
+            'identityProviders' => $this->get(RemoteVettingViewHelper::class)->getIdentityProviders(),
+            'verifyEmail' => $this->emailVerificationIsRequired(),
+            'secondFactorId' => $secondFactorId,
+        ];
+    }
+
+    /**
+     * @Template
      */
     public function emailVerificationEmailSentAction()
     {
@@ -116,7 +130,7 @@ class RegistrationController extends Controller
 
         if ($service->verifyEmail($identityId, $nonce)) {
             return $this->redirectToRoute(
-                'ss_registration_registration_email_sent',
+                'ss_second_factor_remote_vetting_types',
                 ['secondFactorId' => $secondFactor->id]
             );
         }

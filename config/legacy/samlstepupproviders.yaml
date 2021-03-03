@@ -7,56 +7,6 @@ surfnet_stepup_self_service_saml_stepup_provider:
         metadata: ss_registration_gssf_saml_metadata
 
     providers:
-        tiqr:
-            hosted:
-                service_provider:
-                    public_key: "%gssp_tiqr_sp_publickey%"
-                    private_key: "%gssp_tiqr_sp_privatekey%"
-                metadata:
-                    public_key: "%gssp_tiqr_metadata_publickey%"
-                    private_key: "%gssp_tiqr_metadata_privatekey%"
-            remote:
-                entity_id: "%gssp_tiqr_remote_entity_id%"
-                sso_url: "%gssp_tiqr_remote_sso_url%"
-                certificate: "%gssp_tiqr_remote_certificate%"
-            view_config:
-                loa: "%gssp_tiqr_loa%"
-                logo: "%gssp_tiqr_logo%"
-                alt: "%gssp_tiqr_alt%"
-                title: "%gssp_tiqr_title%"
-                description: "%gssp_tiqr_description%"
-                button_use: "%gssp_tiqr_button_use%"
-                initiate_title: "%gssp_tiqr_initiate_title%"
-                initiate_button: "%gssp_tiqr_initiate_button%"
-                explanation: "%gssp_tiqr_explanation%"
-                authn_failed: "%gssp_tiqr_authn_failed%"
-                pop_failed: "%gssp_tiqr_pop_failed%"
-                app_android_url: "%gssp_tiqr_app_android_url%"
-                app_ios_url: "%gssp_tiqr_app_ios_url%"
-        biometric:
-          hosted:
-            service_provider:
-              public_key: "%gssp_biometric_sp_publickey%"
-              private_key: "%gssp_biometric_sp_privatekey%"
-            metadata:
-              public_key: "%gssp_biometric_metadata_publickey%"
-              private_key: "%gssp_biometric_metadata_privatekey%"
-          remote:
-            entity_id: "%gssp_biometric_remote_entity_id%"
-            sso_url: "%gssp_biometric_remote_sso_url%"
-            certificate: "%gssp_biometric_remote_certificate%"
-          view_config:
-            loa: "%gssp_biometric_loa%"
-            logo: "%gssp_biometric_logo%"
-            alt: "%gssp_biometric_alt%"
-            title: "%gssp_biometric_title%"
-            description: "%gssp_biometric_description%"
-            button_use: "%gssp_biometric_button_use%"
-            initiate_title: "%gssp_biometric_initiate_title%"
-            initiate_button: "%gssp_biometric_initiate_button%"
-            explanation: "%gssp_biometric_explanation%"
-            authn_failed: "%gssp_biometric_authn_failed%"
-            pop_failed: "%gssp_biometric_pop_failed%"
         webauthn:
             hosted:
                 service_provider:
@@ -83,58 +33,6 @@ surfnet_stepup_self_service_saml_stepup_provider:
                 pop_failed: "%gssp_webauthn_pop_failed%"
                 app_android_url: "%gssp_webauthn_app_android_url%"
                 app_ios_url: "%gssp_webauthn_app_ios_url%"
-        azuremfa:
-            hosted:
-                service_provider:
-                    public_key: "%gssp_azuremfa_sp_publickey%"
-                    private_key: "%gssp_azuremfa_sp_privatekey%"
-                metadata:
-                    public_key: "%gssp_azuremfa_metadata_publickey%"
-                    private_key: "%gssp_azuremfa_metadata_privatekey%"
-            remote:
-                entity_id: "%gssp_azuremfa_remote_entity_id%"
-                sso_url: "%gssp_azuremfa_remote_sso_url%"
-                certificate: "%gssp_azuremfa_remote_certificate%"
-            view_config:
-                loa: 2
-                logo: "%gssp_azuremfa_logo%"
-                alt: "%gssp_azuremfa_alt%"
-                title: "%gssp_azuremfa_title%"
-                description: "%gssp_azuremfa_description%"
-                button_use: "%gssp_azuremfa_button_use%"
-                initiate_title: "%gssp_azuremfa_initiate_title%"
-                initiate_button: "%gssp_azuremfa_initiate_button%"
-                explanation: "%gssp_azuremfa_explanation%"
-                authn_failed: "%gssp_azuremfa_authn_failed%"
-                pop_failed: "%gssp_azuremfa_pop_failed%"
-                app_android_url: "%gssp_azuremfa_app_android_url%"
-                app_ios_url: "%gssp_azuremfa_app_ios_url%"
-        demo_gssp:
-            hosted:
-                service_provider:
-                    public_key: "%gssp_demo_gssp_sp_publickey%"
-                    private_key: "%gssp_demo_gssp_sp_privatekey%"
-                metadata:
-                    public_key: "%gssp_demo_gssp_metadata_publickey%"
-                    private_key: "%gssp_demo_gssp_metadata_privatekey%"
-            remote:
-                entity_id: "%gssp_demo_gssp_remote_entity_id%"
-                sso_url: "%gssp_demo_gssp_remote_sso_url%"
-                certificate: "%gssp_demo_gssp_remote_certificate%"
-            view_config:
-                loa: 2
-                logo: "%gssp_demo_gssp_logo%"
-                alt: "%gssp_demo_gssp_alt%"
-                title: "%gssp_demo_gssp_title%"
-                description: "%gssp_demo_gssp_description%"
-                button_use: "%gssp_demo_gssp_button_use%"
-                initiate_title: "%gssp_demo_gssp_initiate_title%"
-                initiate_button: "%gssp_demo_gssp_initiate_button%"
-                explanation: "%gssp_demo_gssp_explanation%"
-                authn_failed: "%gssp_demo_gssp_authn_failed%"
-                pop_failed: "%gssp_demo_gssp_pop_failed%"
-                app_android_url: "%gssp_demo_gssp_app_android_url%"
-                app_ios_url: "%gssp_demo_gssp_app_ios_url%"
         demo_gssp_2:
             hosted:
                 service_provider:
@@ -161,3 +59,55 @@ surfnet_stepup_self_service_saml_stepup_provider:
                 pop_failed: "%gssp_demo_gssp_2_pop_failed%"
                 app_android_url: "%gssp_demo_gssp_2_app_android_url%"
                 app_ios_url: "%gssp_demo_gssp_2_app_ios_url%"
+        tiqr:
+            hosted:
+                service_provider:
+                    public_key: "%gssp_tiqr_sp_publickey%"
+                    private_key: "%gssp_tiqr_sp_privatekey%"
+                metadata:
+                    public_key: "%gssp_tiqr_metadata_publickey%"
+                    private_key: "%gssp_tiqr_metadata_privatekey%"
+            remote:
+                entity_id: "%gssp_tiqr_remote_entity_id%"
+                sso_url: "%gssp_tiqr_remote_sso_url%"
+                certificate: "%gssp_tiqr_remote_certificate%"
+            view_config:
+                loa: 2
+                logo: "%gssp_tiqr_logo%"
+                alt: "%gssp_tiqr_alt%"
+                title: "%gssp_tiqr_title%"
+                description: "%gssp_tiqr_description%"
+                button_use: "%gssp_tiqr_button_use%"
+                initiate_title: "%gssp_tiqr_initiate_title%"
+                initiate_button: "%gssp_tiqr_initiate_button%"
+                explanation: "%gssp_tiqr_explanation%"
+                authn_failed: "%gssp_tiqr_authn_failed%"
+                pop_failed: "%gssp_tiqr_pop_failed%"
+                app_android_url: "%gssp_tiqr_app_android_url%"
+                app_ios_url: "%gssp_tiqr_app_ios_url%"
+        demo_gssp:
+            hosted:
+                service_provider:
+                    public_key: "%gssp_demo_gssp_sp_publickey%"
+                    private_key: "%gssp_demo_gssp_sp_privatekey%"
+                metadata:
+                    public_key: "%gssp_demo_gssp_metadata_publickey%"
+                    private_key: "%gssp_demo_gssp_metadata_privatekey%"
+            remote:
+                entity_id: "%gssp_demo_gssp_remote_entity_id%"
+                sso_url: "%gssp_demo_gssp_remote_sso_url%"
+                certificate: "%gssp_demo_gssp_remote_certificate%"
+            view_config:
+                loa: 2
+                logo: "%gssp_demo_gssp_logo%"
+                alt: "%gssp_demo_gssp_alt%"
+                title: "%gssp_demo_gssp_title%"
+                description: "%gssp_demo_gssp_description%"
+                button_use: "%gssp_demo_gssp_button_use%"
+                initiate_title: "%gssp_demo_gssp_initiate_title%"
+                initiate_button: "%gssp_demo_gssp_initiate_button%"
+                explanation: "%gssp_demo_gssp_explanation%"
+                authn_failed: "%gssp_demo_gssp_authn_failed%"
+                pop_failed: "%gssp_demo_gssp_pop_failed%"
+                app_android_url: "%gssp_demo_gssp_app_android_url%"
+                app_ios_url: "%gssp_demo_gssp_app_ios_url%"

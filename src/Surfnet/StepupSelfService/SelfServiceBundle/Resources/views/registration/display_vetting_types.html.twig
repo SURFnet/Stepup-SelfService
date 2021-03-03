@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}{{ 'ss.registration.vetting_type.title'|trans }}{% endblock %}
+
+{% block page_header %}
+    {{ parent() }}
+
+    {% if verifyEmail %}
+        {% include 'SurfnetStepupSelfServiceSelfServiceBundle:registration/partial:progress_bar.html.twig' with {'progress':75, 'step': 4, verifyEmail: true} only %}
+    {% else %}
+        {% include 'SurfnetStepupSelfServiceSelfServiceBundle:registration/partial:progress_bar.html.twig' with {'progress': 65, 'step': 3, verifyEmail: false} only %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ block('page_title') }}</h2>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <p>{{ 'ss.registration.vetting_type.description.vetting'|trans }}</p>
+        </div>
+    </div>
+
+    <div class="row remote-vetting">
+
+        <div class="col-xs-12 col-md-3">
+            <div class="thumbnail second-factor-selector">
+                <img src="/images/remote-vetting/on-premise.png"
+                     alt="{{ ('ss.registration.selector.on-premise.alt')|trans }}">
+                <h3>{{ 'ss.registration.vetting_type.title.ra_vetting'|trans }}</h3>
+                <hr>
+                <p>{{ 'ss.registration.vetting_type.description.ra_vetting'|trans }}</p>
+                <p>
+                    <form action="{{ url('ss_registration_registration_email_sent', {'secondFactorId': secondFactorId}) }}" method="get">
+                    <button type="submit" class="btn btn-primary">{{ 'ss.registration.vetting_type.button.ra_vetting'|trans }}</button>
+                </p>
+                </form>
+            </div>
+        </div>
+
+        {% for identityProvider in identityProviders %}
+            <div class="col-xs-12 col-md-3">
+                <div class="thumbnail second-factor-selector">
+                    <img class="image" src="{{ identityProvider.logo }}" alt="Logo of {{ identityProvider.name }}">
+                    <h3>{{ identityProvider.name }}</h3>
+                    <hr>
+                    <p>
+                        {{ identityProvider.description(app.request.locale) }}
+                    </p>
+                    <p>
+                        <form action="{{ url('ss_second_factor_remote_vet', {'secondFactorId': secondFactorId, 'identityProviderSlug': identityProvider.slug }) }}" method="get">
+                            <button type="submit" class="btn btn-primary" id="select-rv-idp-{{ identityProvider.slug }}">{{ 'ss.registration.vetting_type.button.ra_vetting'|trans }}</button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

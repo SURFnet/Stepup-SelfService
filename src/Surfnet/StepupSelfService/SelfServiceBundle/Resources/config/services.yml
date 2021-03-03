@@ -1,3 +1,6 @@
+imports:
+    - { resource: 'remote_vetting.yml' }
+
 services:
     # To be compatible with loading services from the container instead of using DI, TODO, Utilize DI throughout the
     # application.
@@ -80,6 +83,11 @@ services:
         class: Surfnet\StepupSelfService\SelfServiceBundle\Service\GssfService
         arguments:
             - "@surfnet_stepup_self_service_self_service.service.command"
+
+    self_service.service.application:
+        class: Surfnet\StepupSelfService\SelfServiceBundle\Service\ApplicationHelper
+        arguments:
+            $kernelProjectDir: "%kernel.project_dir%"
 
     self_service.service.identity:
         class: Surfnet\StepupSelfService\SelfServiceBundle\Service\IdentityService

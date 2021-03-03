@@ -1,0 +1,18 @@
+{
+  "schachome": {
+    "institution-d.example.com": {
+      "nl_NL": "Instelling D",
+      "en_GB": "Institution D"
+    }
+  },
+  "attributes": {
+    "givenName": {
+      "nl_NL": "Voornaam",
+      "en_GB": "Given name"
+    },
+    "surname": {
+      "nl_NL": "Achternaam",
+      "en_GB": "Surname"
+    }
+  }
+}

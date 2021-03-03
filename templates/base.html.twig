@@ -13,6 +13,7 @@
 </head>
 <body>
 
+
 {% block flashes %}
     {% if app.session.flashbag.peekAll|length > 0 %}
         <div class="row-fluid">
@@ -60,6 +61,24 @@
             <hr>
         {% endif %}
     {% endblock page_header %}
+
+    {% set notice %}
+        {% include 'notice.html.twig' ignore missing %}
+    {% endset %}
+
+    {% if notice | spaceless is not empty and not (app.request.cookies.has('SELFSERVICE_NOTICE_DISMISSED')) %}
+    <div class="row-fluid">
+        <div id="notice" class="span12">
+            <div class="alert alert-notice alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" onclick="document.cookie = 'SELFSERVICE_NOTICE_DISMISSED; expires=0; path=/';">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span></button>
+                    {{ notice }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
 
     <div class="main-content">
         {% block content_row %}

@@ -1,0 +1,4 @@
+ss_second_factor_remote_vet_mock:
+  path:     /second-factor/mock/sso
+  methods:  [GET,POST]
+  defaults: { _controller: Surfnet\StepupSelfService\SelfServiceBundle\Mock\RemoteVetting\MockRemoteVetController::ssoAction }

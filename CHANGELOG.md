@@ -1,5 +1,8 @@
 # Changelog
 
+## Remote Vetting (RC)
+Remote vetting will allow configured Remote Vetting SAML IdP's to vet tokens.
+
 ## 3.0.3:
  * Add GSSP UserAttributes extensions to registration-SAMLAuthnRequest to pass user-information to GSSP's
  * Update dependencies

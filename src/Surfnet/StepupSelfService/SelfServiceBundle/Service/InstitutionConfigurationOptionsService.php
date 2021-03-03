@@ -21,7 +21,7 @@ namespace Surfnet\StepupSelfService\SelfServiceBundle\Service;
 use Surfnet\StepupMiddlewareClientBundle\Configuration\Dto\InstitutionConfigurationOptions;
 use Surfnet\StepupMiddlewareClientBundle\Configuration\Service\InstitutionConfigurationOptionsService as ApiInstitutionConfigurationOptionsService;
 
-final class InstitutionConfigurationOptionsService
+class InstitutionConfigurationOptionsService
 {
     /**
      * @var ApiInstitutionConfigurationOptionsService

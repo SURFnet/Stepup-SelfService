@@ -18,6 +18,7 @@
 
 namespace Surfnet\StepupSelfService\SelfServiceBundle\Controller;
 
+use LogicException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Surfnet\StepupSelfService\SelfServiceBundle\Command\RevokeCommand;
 use Surfnet\StepupSelfService\SelfServiceBundle\Form\Type\RevokeSecondFactorType;

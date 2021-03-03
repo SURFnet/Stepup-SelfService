@@ -1,0 +1,41 @@
+<html>
+    <h2>Select response</h2>
+    <form method="post" action="{{ action }}">
+
+        <h3>Attributes</h3>
+        <textarea name="attributes" style="width:800px; height: 500px;">
+[
+{
+    "name":"uid",
+    "value": [
+        "test"
+    ]
+},
+{
+    "name":"firstName",
+    "value": [
+        "John"
+    ]
+},
+{
+    "name":"lastName",
+    "value": [
+        "Doe"
+    ]
+},
+{
+    "name":"eduPersonAffiliation",
+    "value": [
+        "users",
+        "role1"
+    ]
+}
+]
+        </textarea>
+        <br/>
+
+        {% for id, response in responses %}
+            <button name="status" value="{{ response }}" type="submit">{{ response }}</button><br/>
+        {% endfor %}
+    </form>
+</html>

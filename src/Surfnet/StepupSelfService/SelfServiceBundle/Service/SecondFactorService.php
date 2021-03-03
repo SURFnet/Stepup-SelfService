@@ -22,6 +22,7 @@ use Surfnet\StepupMiddlewareClient\Identity\Dto\UnverifiedSecondFactorSearchQuer
 use Surfnet\StepupMiddlewareClient\Identity\Dto\VerifiedSecondFactorOfIdentitySearchQuery;
 use Surfnet\StepupMiddlewareClient\Identity\Dto\VettedSecondFactorSearchQuery;
 use Surfnet\StepupMiddlewareClientBundle\Dto\CollectionDto;
+use Surfnet\StepupMiddlewareClientBundle\Identity\Command\RemoteVetSecondFactorCommand;
 use Surfnet\StepupMiddlewareClientBundle\Identity\Command\RevokeOwnSecondFactorCommand;
 use Surfnet\StepupMiddlewareClientBundle\Identity\Command\VerifyEmailCommand;
 use Surfnet\StepupMiddlewareClientBundle\Identity\Dto\UnverifiedSecondFactor;
@@ -31,6 +32,7 @@ use Surfnet\StepupMiddlewareClientBundle\Identity\Dto\VerifiedSecondFactorCollec
 use Surfnet\StepupMiddlewareClientBundle\Identity\Dto\VettedSecondFactor;
 use Surfnet\StepupMiddlewareClientBundle\Identity\Dto\VettedSecondFactorCollection;
 use Surfnet\StepupMiddlewareClientBundle\Identity\Service\SecondFactorService as MiddlewareSecondFactorService;
+use Surfnet\StepupSelfService\SelfServiceBundle\Command\RemoteVetCommand;
 use Surfnet\StepupSelfService\SelfServiceBundle\Command\RevokeCommand;
 use Surfnet\StepupSelfService\SelfServiceBundle\Exception\LogicException;
 
@@ -90,6 +92,21 @@ class SecondFactorService
         $apiCommand = new RevokeOwnSecondFactorCommand();
         $apiCommand->identityId = $command->identity->id;
         $apiCommand->secondFactorId = $secondFactor->id;
+
+        $result = $this->commandService->execute($apiCommand);
+
+        return $result->isSuccessful();
+    }
+
+    /**
+     * @param RemoteVetCommand $command
+     * @return bool
+     */
+    public function remoteVet(RemoteVetCommand $command)
+    {
+        $apiCommand = new RemoteVetSecondFactorCommand();
+        $apiCommand->identityId = $command->identity;
+        $apiCommand->secondFactorId = $command->secondFactor;
 
         $result = $this->commandService->execute($apiCommand);
 

@@ -101,6 +101,9 @@
     "phar-io/version": {
         "version": "3.1.0"
     },
+    "php": {
+        "version": "7.2"
+    },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
     },
@@ -256,6 +259,9 @@
     "symfony/asset": {
         "version": "v4.4.19"
     },
+    "symfony/browser-kit": {
+        "version": "v4.4.19"
+    },
     "symfony/cache": {
         "version": "v4.4.19"
     },
@@ -278,10 +284,16 @@
             "config/bootstrap.php"
         ]
     },
+    "symfony/css-selector": {
+        "version": "v4.4.19"
+    },
     "symfony/debug": {
         "version": "v4.4.19"
     },
     "symfony/dependency-injection": {
+        "version": "v4.4.19"
+    },
+    "symfony/dom-crawler": {
         "version": "v4.4.19"
     },
     "symfony/error-handler": {

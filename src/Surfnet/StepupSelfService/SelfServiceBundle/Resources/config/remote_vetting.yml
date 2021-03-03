@@ -1,0 +1,72 @@
+services:
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\IdentityProviderFactory:
+    public: true
+    arguments:
+      $configuration: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Configuration\RemoteVettingConfiguration'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\ServiceProviderFactory:
+    arguments:
+      $router: '@router'
+      $entityId: "%remote_vetting_entity_id%"
+      $assertionConsumerUrlSlug: "ss_second_factor_remote_vet_acs"
+      $privateKey: "%saml_rv_privatekey%"
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Configuration\RemoteVettingConfiguration:
+    arguments:
+      $privateKey: '%saml_rv_privatekey%'
+      $configurationSettings: '%identity_encryption_configuration%'
+      $remoteVettingIdpConfig: '%remote_vetting_idps%'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\RemoteVettingContext:
+    arguments:
+      $session: '@session'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\SamlCalloutHelper:
+    $identityProviderFactory: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\IdentityProviderFactory'
+    $serviceProviderFactory: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\ServiceProviderFactory'
+    $postBinding: '@surfnet_saml.http.post_binding'
+    $remoteVettingService: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVettingService'
+    $logger: '@logger'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\AttributeMapper:
+    $configuration: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Configuration\RemoteVettingConfiguration'
+    $logger: '@logger'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVettingService:
+    public: true
+    arguments:
+      $remoteVettingContext: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\RemoteVettingContext'
+      $attributeMapper: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\AttributeMapper'
+      $identityEncrypter: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Encryption\IdentityEncrypter'
+      $applicationHelper: '@self_service.service.application'
+      $logger: '@logger'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Controller\RemoteVettingController:
+    public: true
+    arguments:
+      - '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVettingService'
+      - '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\RemoteVettingViewHelper'
+      - '@surfnet_stepup_self_service_self_service.service.second_factor'
+      - '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\SamlCalloutHelper'
+      - '@surfnet_stepup.registration_expiration_helper'
+      - '@logger'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Encryption\IdentityFilesystemWriter:
+    arguments:
+      - '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Configuration\RemoteVettingConfiguration'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\RemoteVettingViewHelper:
+    public: true
+    arguments:
+      $configuration: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Configuration\RemoteVettingConfiguration'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Encryption\IdentityEncrypter:
+    arguments:
+      $configuration: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Configuration\RemoteVettingConfiguration'
+      $writer: '@Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Encryption\IdentityFilesystemWriter'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Twig\Extensions\Extension\RemoteVetting:
+    arguments:
+      - "%kernel.project_dir%/translations/remote_vetting.json"
+    tags:
+      - { name : twig.extension }

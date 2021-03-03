@@ -20,6 +20,26 @@ ss_second_factor_revoke:
     requirements:
         state: '^(unverified|verified|vetted)$'
 
+ss_second_factor_remote_vetting_types:
+    path:     /second-factor/{secondFactorId}/vetting-types
+    methods:  [GET]
+    defaults: { _controller: SurfnetStepupSelfServiceSelfServiceBundle:Registration:displayVettingTypes }
+
+ss_second_factor_remote_vet:
+    path:     /second-factor/{secondFactorId}/remote-vet/{identityProviderSlug}
+    methods:  [GET,POST]
+    defaults: { _controller: SurfnetStepupSelfServiceSelfServiceBundle:RemoteVetting:remoteVet }
+
+ss_second_factor_remote_vet_acs:
+    path:     /second-factor/acs
+    methods:  [GET,POST]
+    defaults: { _controller: SurfnetStepupSelfServiceSelfServiceBundle:RemoteVetting:acs }
+
+ss_second_factor_remote_vet_match:
+    path:     /second-factor/remote-vetting/match/{processId}
+    methods:  [GET,POST]
+    defaults: { _controller: SurfnetStepupSelfServiceSelfServiceBundle:RemoteVetting:remoteVetMatch }
+
 ss_registration_display_types:
     path:     /registration/select-token
     methods:  [GET]

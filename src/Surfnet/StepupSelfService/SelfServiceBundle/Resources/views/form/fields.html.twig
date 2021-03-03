@@ -64,3 +64,17 @@
         </div>
     {% endspaceless %}
 {%- endblock otp_widget -%}
+
+{# Show value in the remote vetting attribute match. #}
+{% block ss_remote_vet_assertion_widget %}
+    {% spaceless %}
+            <tr>
+                <td>{{ form.vars.data.localAttribute.name | trans_rv_attribute(app.request.locale) }}</td>
+                <td>{{ form.vars.data.localAttribute.value | join(',<br/>') }}</td>
+                <td>{{ form.vars.data.remoteAttribute.value | join(',<br/>') }}</td>
+                <td>{{ form_widget(form.valid) }}</td>
+                <td>{{ form_widget(form.remarks) }}</td>
+            </tr>
+    {% endspaceless %}
+{% endblock %}
+

@@ -29,3 +29,30 @@ services:
     factory: ['Surfnet\StepupSelfService\SelfServiceBundle\Tests\TestDouble\Factory\GuzzleApiFactory', createCommandGuzzleClient]
     arguments:
         - "%middleware_url_command_api%"
+
+
+  # A remote vetting mock IdP is used in order to mock the attributes released from a remote RV (Remote Vetting) IdP.
+  # This IdP is utilized as a drop in replacement to test the attribute matching between a remote IdP to vet with and the local
+  # OpenConext IdP.
+  Surfnet\StepupSelfService\SelfServiceBundle\Service\RemoteVetting\Configuration\RemoteVettingConfiguration:
+    arguments:
+      $privateKey: '%saml_rv_privatekey%'
+      $configurationSettings: '%identity_encryption_configuration%'
+      $remoteVettingIdpConfig: '%remote_vetting_idps%'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Mock\RemoteVetting\MockConfiguration:
+    arguments:
+      $identityProviderEntityId: 'https://selfservice.stepup.example.com/mock/idp/metadata'
+      $serviceProviderEntityId: 'https://selfservice.stepup.example.com/rv/metadata'
+      $privateKeyPath: '%saml_rv_privatekey%'
+      $publicCertPath: '%saml_rv_publickey%'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Mock\RemoteVetting\MockRemoteVetController:
+    public: true
+    arguments:
+      - '@Surfnet\StepupSelfService\SelfServiceBundle\Mock\RemoteVetting\MockGateway'
+      - '@twig'
+
+  Surfnet\StepupSelfService\SelfServiceBundle\Mock\RemoteVetting\MockGateway:
+    arguments:
+      - '@Surfnet\StepupSelfService\SelfServiceBundle\Mock\RemoteVetting\MockConfiguration'

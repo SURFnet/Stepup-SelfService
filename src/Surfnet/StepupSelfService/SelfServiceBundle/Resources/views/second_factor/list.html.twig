@@ -66,8 +66,14 @@
                             {% endif %}
                             <td>
                                 <div class="btn-group pull-right" role="group">
+                                    {% if state == 'verified' and not expirationHelper.hasExpired(secondFactor.registrationRequestedAt) %}
+                                        <a class="btn btn-mini btn-default"
+                                           href="{{ path('ss_second_factor_remote_vetting_types', {'secondFactorId': secondFactor.id}) }}">
+                                            {{ 'ss.second_factor.revoke.button.remote_vet'|trans }}
+                                        </a>
+                                    {%  endif %}
                                     <a class="btn btn-mini btn-warning"
-                                        href="{{ path('ss_second_factor_revoke', {'state': state, 'secondFactorId': secondFactor.id}) }}">
+                                       href="{{ path('ss_second_factor_revoke', {'state': state, 'secondFactorId': secondFactor.id}) }}">
                                         {{ 'ss.second_factor.revoke.button.revoke'|trans }}
                                     </a>
                                 </div>

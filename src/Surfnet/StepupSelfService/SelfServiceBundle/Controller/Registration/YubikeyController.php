@@ -56,7 +56,7 @@ class YubikeyController extends Controller
                     );
                 } else {
                     return $this->redirectToRoute(
-                        'ss_registration_registration_email_sent',
+                        'ss_second_factor_remote_vetting_types',
                         ['secondFactorId' => $result->getSecondFactorId()]
                     );
                 }

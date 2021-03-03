@@ -47,6 +47,8 @@ class SessionStorageTest extends TestCase
         $sessionStorage = new SessionStorage(new FakeSession());
 
         $sessionStorage->logAuthenticationMoment();
+
+        $this->assertInstanceOf(SessionStorage::class, $sessionStorage);
     }
 
     /**
@@ -122,6 +124,8 @@ class SessionStorageTest extends TestCase
         $sessionStorage = new SessionStorage(new FakeSession());
 
         $sessionStorage->updateLastInteractionMoment();
+
+        $this->assertInstanceOf(SessionStorage::class, $sessionStorage);
     }
 
     /**
@@ -293,6 +297,8 @@ class SessionStorageTest extends TestCase
         $sessionStorage = new SessionStorage($session);
 
         $sessionStorage->invalidate();
+
+        $this->assertInstanceOf(SessionStorage::class, $sessionStorage);
     }
 
     /**
@@ -309,6 +315,8 @@ class SessionStorageTest extends TestCase
         $sessionStorage = new SessionStorage($session);
 
         $sessionStorage->migrate();
+
+        $this->assertInstanceOf(SessionStorage::class, $sessionStorage);
     }
 
     /**

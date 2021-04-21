@@ -1,11 +1,9 @@
 # Use this service definition file to override services and parameters in the test environment.
 # For example to mock certain services, or override a password for test.
 
-parameters:
-  middleware_credentials_password: secret
-
 services:
   surfnet_stepup_self_service_self_service.service.sms_second_factor:
+    public: true
     class: Surfnet\StepupSelfService\SelfServiceBundle\Tests\TestDouble\Service\SmsSecondFactorService
     arguments:
         - "@surfnet_stepup_self_service_self_service.service.command"
@@ -20,8 +18,8 @@ services:
     factory: ['Surfnet\StepupSelfService\SelfServiceBundle\Tests\TestDouble\Factory\GuzzleApiFactory', createApiGuzzleClient]
     arguments:
         - "%middleware_url_api%"
-        - "%middleware_credentials_username%"
-        - "%middleware_credentials_password%"
+        - "ss"
+        - "secret"
 
   surfnet_stepup_middleware_client.guzzle.commands:
     public: false
